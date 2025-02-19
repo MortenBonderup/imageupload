@@ -1,10 +1,39 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import Nav from "./components/Nav";
 import CreatePage from "./pages/CreatePage";
 import UpdatePage from "./pages/UpdatePage";
+import Layout from "./Layout";
 
-export default function App() {
+const router = createBrowserRouter([
+    {
+        path: "/imageupload/",
+        element: <Layout />,
+        children: [
+            {
+                index: true,
+                element: <HomePage />,
+            },
+            {
+                path: "create",
+                element: <CreatePage />,
+            },
+            {
+                path: "posts/:postId",
+                element: <UpdatePage />,
+            },
+        ],
+    },
+]);
+
+function App() {
+    return (
+        <RouterProvider router={router} />
+    );
+}
+
+export default App;
+
+/*export default function App() {
     return (
         <main>
             <Nav />
@@ -16,4 +45,4 @@ export default function App() {
             </Routes>
         </main>
     );
-}
+} */

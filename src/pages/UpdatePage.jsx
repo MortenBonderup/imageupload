@@ -19,7 +19,7 @@ export default function UpdatePage() {
     }, [url]);
 
     async function updatePost(postToUpdate) {
-        postToUpdate.uid = post.uid;
+        // postToUpdate.uid = post.uid;
         const response = await fetch(url, {
             method: "PUT",
             body: JSON.stringify(postToUpdate)
@@ -27,7 +27,7 @@ export default function UpdatePage() {
         if (response.ok) {
             const data = await response.json();
             console.log("Post updated: ", data);
-            navigate("/");
+            navigate("/imageupload/");
         } else {
             console.log("Sorry, something went wrong");
         }
@@ -41,7 +41,7 @@ export default function UpdatePage() {
             });
             if (response.ok) {
                 console.log("Post deleted");
-                navigate("/");
+                navigate("/imageupload/");
             } else {
                 console.log("Sorry, something went wrong");
             }
